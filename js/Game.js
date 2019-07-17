@@ -55,9 +55,8 @@ class Game {
         }
         // Set active phrase to nothing so app will not accept keyboard input
         this.activePhrase = '';
-        // Remove previous phrase
+        // Remove previous
         $("#phrase ul").empty();
-        // Re-enable on-screen keyboard buttons, update each to use "key" class, not "chosen" or "wrong"
         $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong");
         // Reset heart lives
         $(".tries img").attr("src", "images/liveHeart.png");
@@ -68,7 +67,6 @@ class Game {
         this.missed++;
         // Select heart image based on how many times the player has missed a correct guess
         const tries = $(`#scoreboard li:nth-child(${this.missed}) img`);
-
         if (tries.attr("src") == "images/liveHeart.png") {
             tries.attr("src", "images/lostHeart.png");
         }
