@@ -11,17 +11,16 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
-const game = new Game();
-const startButton = document.getElementById('btn__reset')
-const keys = document.querySelectorAll('.key');
-
-// Add a click event handler to the start button to begin the game
-startButton.addEventListener('click', function() {
-    //
-  game.startGame()});
-// Add a click event handler to each key in the game to see if theres a match or not 
-keys.forEach(key => {
-  key.addEventListener('click', function() {
-    game.handleInteraction(key);
-  });
+let game = new Game();
+document.getElementById('btn__reset').addEventListener('click', () => {
+	game = new Game();
+	game.startGame();
+});
+// get all key elements
+const keyElements = document.querySelectorAll('.key');
+// add eventListener to all key elements
+keyElements.forEach(keyElement => {
+ 	keyElement.addEventListener('click', () => {
+ 		game.handleInteraction(keyElement);
+ 	});
 });

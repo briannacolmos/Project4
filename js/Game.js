@@ -56,26 +56,25 @@ class Game {
         // Set active phrase to nothing so app will not accept keyboard input
         this.activePhrase = '';
         // Remove previous
-        $("#phrase ul").empty();
+        
         $(".key").attr("disabled", false).removeClass("chosen").removeClass("wrong");
         // Reset heart lives
         $(".tries img").attr("src", "images/liveHeart.png");
     };
 
-    // Checks if player has remaining lives and ends game if none remainin
-    removeLife() {
-        this.missed++;
-        // Select heart image based on how many times the player has missed a correct guess
-        const tries = $(`#scoreboard li:nth-child(${this.missed}) img`);
-        if (tries.attr("src") == "images/liveHeart.png") {
-            tries.attr("src", "images/lostHeart.png");
-        }
+    // Checks if player has remaining lives and ends game if none remaining
+    removeLife()
+    {
+        let allHearts = document.querySelectorAll('img');
+        let liveHeart = allHearts[this.missed];
+        liveHeart.src = 'images/lostHeart.png';
         
-        if (this.missed == 5) {
-           this.gameOver(false);
+        this.missed++;
+        
+        if(this.missed === 5) {
+            this.gameOver(false);
         }
-    };
-
+    }
     // Handles on-screen keyboard button clicks
     // Takes in HTML button element that was clicked
     handleInteraction(button) {
